@@ -17,6 +17,7 @@ REQUIREMENTS = [
     # We're doing enough subclassing and monkey patching to where we really do
     # need to lock this in to a specific version.
     'distlib==0.2.3',
+    'cryptography',
     'paste',
     'passlib',
     'pycrypto',
