@@ -135,14 +135,7 @@ def make_config(argv=None):
         else:
             data['secret_key'] = prompt("AWS secret access key?")
 
-        def bucket_validate(name):
-            """ Check for valid bucket name """
-            if '.' in name:
-                print "Bucket names cannot contain '.'"
-                return False
-            return True
-
-        data['s3_bucket'] = prompt("S3 bucket name?", validate=bucket_validate)
+        data['s3_bucket'] = prompt("S3 bucket name?")
 
     data['encrypt_key'] = b64encode(os.urandom(32))
     data['validate_key'] = b64encode(os.urandom(32))
