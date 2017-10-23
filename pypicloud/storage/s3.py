@@ -114,11 +114,13 @@ class S3Storage(IStorage):
         for key in keys:
             # Boto doesn't send down metadata from bucket.list()
             # so we are forced to retrieve each key individually.
-            key = self.bucket.get_key(key.key)
-            filename = posixpath.basename(key.key)
-            name = key.get_metadata('name')
-            version = key.get_metadata('version')
-            summary = key.get_metadata('summary')
+
+            obj = key.Object()
+
+            filename = posixpath.basename(obj.key)
+            name = obj.metadata.get('name')
+            version = obj.metadata.get('version')
+            summary = obj.metadata.get('summary')
 
             # We used to not store metadata. This is for backwards
             # compatibility
